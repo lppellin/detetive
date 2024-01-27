@@ -1,6 +1,6 @@
 var suspects = ['PREFEITO', 'MORDOMO', 'COZINHEIRO', 'FLORISTA', 'MÉDICA', 'DANÇARINA', 'COVEIRO', 'CIGANA'];
 var weapons = ['ESPINGARDA', 'PÁ', 'PÉ DE CABRA', 'TESOURA', 'ARMA QUÍMICA', 'VENENO', 'SOCO INGLÊS', 'FACA'];
-var locations = ['PREFEITURA', 'RESTAURANTE', 'FLORICULTURA', 'BOATE', 'HOSPITAL', 'MANSÃO', 'CEMITÉRIO', 'PRAÇA', 'HOTEL', 'BANCO', 'ESTAÇÃO DE TREM'];
+var locations = ['PREFEITURA', 'RESTAURANTE', 'FLORICULTURA', 'BOATE', 'HOSPITAL', 'MANSÃO', 'CEMITÉRIO', 'PRAÇA', 'HOTEL', 'BANCO', 'ESTAÇÃO'];
 
 function createItems(listId, items) {
  var ul = document.getElementById(listId);
