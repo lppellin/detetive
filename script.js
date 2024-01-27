@@ -49,7 +49,7 @@ window.onload = function() {
 
  // Botão para restaurar o estado das caixas de seleção e o valor do campo de entrada de texto
  var restoreButton = document.createElement('button');
- restoreButton.textContent = 'Limpar';
+ restoreButton.textContent = 'LIMPAR';
  restoreButton.className = 'restore-button';
  restoreButton.onclick = function() {
    checkboxes.forEach(function(checkbox) {
