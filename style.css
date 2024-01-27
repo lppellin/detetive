@@ -37,7 +37,7 @@ body {
     border-radius: 10px;
     background-color:rgb(66, 114, 66);
     font-family: 'Montserrat', sans-serif;
-    font-size: 1em;
+    font-size: 1.2em;
     
 }
 
@@ -62,7 +62,7 @@ body {
     width:25%;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.8em;
+    font-size: 1em;
 }
 
 .restore-button {
