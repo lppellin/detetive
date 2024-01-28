@@ -29,20 +29,23 @@ function createCountDisplay(listId, displayId) {
 }
 
 function createProgressBar(listId, progressBarId) {
-    const progressBarContainer = document.createElement("div");
-    progressBarContainer.className = "progress";
+  const progressBarContainer = document.createElement("div");
+  progressBarContainer.className = "progress";
 
-    const progressBar = document.createElement("div");
-    progressBar.className = "progress-bar";
-    progressBar.id = progressBarId;
-    progressBar.role = "progressbar";
-    progressBar.style.width = "0%";
-    progressBar.ariaValueNow = "0";
-    progressBar.ariaValueMin = "0";
-    progressBar.ariaValueMax = "100";
+  const progressBar = document.createElement("div");
+  progressBar.className = "progress-bar";
+  progressBar.id = progressBarId;
+  progressBar.role = "progressbar";
+  progressBar.style.width = "0%";
+  progressBar.ariaValueNow = "0";
+  progressBar.ariaValueMin = "0";
+  progressBar.ariaValueMax = "100";
 
-    progressBarContainer.appendChild(progressBar);
-    document.getElementById(listId).parentNode.appendChild(progressBarContainer);
+  progressBarContainer.appendChild(progressBar);
+
+
+  const ul = document.getElementById(listId);
+  ul.insertBefore(progressBarContainer, ul.firstChild);
 }
 
 function updateProgressBar(className, progressBarId) {

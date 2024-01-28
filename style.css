@@ -80,15 +80,30 @@ body {
     width: 100%;
     background-color: #e0e0e0;
     border-radius: 4px;
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    overflow: hidden;
 }
 
 .progress-bar {
     height: 20px;
     background-color: #4CAF50;
     text-align: center;
-    line-height: 20px; /* Centraliza o texto verticalmente */
+    line-height: 20px;
     color: white;
     border-radius: 4px;
-    transition: width 0.5s; /* Efeito suave ao mudar a largura */
+    transition: width 0.5s ease-in-out;
+    position: relative;
+    animation: loadingAnimation 2s infinite;
+}
+
+@keyframes loadingAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.progress-bar {
+    background: linear-gradient(-45deg, #574caf, #c34a4a, #cddc39, #ffc107);
+    background-size: 400% 400%;
 }
