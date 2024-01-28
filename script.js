@@ -12,10 +12,6 @@ function createItems(listId, items, classname) {
     });
 }
 
-createItems('suspectsList', suspects, 'check-suspects');
-createItems('weaponsList', weapons, 'check-weapons');
-createItems('locationsList', locations, 'check-locations');
-
 function countSelectedCheckboxes(className) {
     return document.querySelectorAll(`.${className}:checked`).length;
 }
@@ -32,7 +28,46 @@ function createCountDisplay(listId, displayId) {
     document.getElementById(listId).parentNode.appendChild(display);
 }
 
+function createProgressBar(listId, progressBarId) {
+    const progressBarContainer = document.createElement("div");
+    progressBarContainer.className = "progress";
+
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar";
+    progressBar.id = progressBarId;
+    progressBar.role = "progressbar";
+    progressBar.style.width = "0%";
+    progressBar.ariaValueNow = "0";
+    progressBar.ariaValueMin = "0";
+    progressBar.ariaValueMax = "100";
+
+    progressBarContainer.appendChild(progressBar);
+    document.getElementById(listId).parentNode.appendChild(progressBarContainer);
+}
+
+function updateProgressBar(className, progressBarId) {
+    const totalCheckboxes = document.querySelectorAll(`.${className}`).length;
+    const selectedCheckboxes = countSelectedCheckboxes(className);
+    const percentComplete = (selectedCheckboxes / totalCheckboxes) * 100;
+
+    const progressBar = document.getElementById(progressBarId);
+    progressBar.style.width = `${percentComplete}%`;
+    progressBar.ariaValueNow = percentComplete.toString();
+}
+
 window.onload = function() {
+    createItems('suspectsList', suspects, 'check-suspects');
+    createItems('weaponsList', weapons, 'check-weapons');
+    createItems('locationsList', locations, 'check-locations');
+
+    createCountDisplay('suspectsList', 'count-suspects');
+    createCountDisplay('weaponsList', 'count-weapons');
+    createCountDisplay('locationsList', 'count-locations');
+
+    createProgressBar('suspectsList', 'progress-suspects');
+    createProgressBar('weaponsList', 'progress-weapons');
+    createProgressBar('locationsList', 'progress-locations');
+
     const checkboxes = document.querySelectorAll('.list-group-item input[type=checkbox]');
     checkboxes.forEach(function(checkbox, index) {
         checkbox.id = 'checkbox' + index;
@@ -43,13 +78,13 @@ window.onload = function() {
 
         checkbox.addEventListener('change', function() {
             localStorage.setItem(checkbox.id, checkbox.checked);
-            if (checkbox.classList.contains('check-suspects')) {
-                updateCountDisplay('check-suspects', 'count-suspects');
-            } else if (checkbox.classList.contains('check-weapons')) {
-                updateCountDisplay('check-weapons', 'count-weapons');
-            } else if (checkbox.classList.contains('check-locations')) {
-                updateCountDisplay('check-locations', 'count-locations');
-            }
+            updateCountDisplay('check-suspects', 'count-suspects');
+            updateCountDisplay('check-weapons', 'count-weapons');
+            updateCountDisplay('check-locations', 'count-locations');
+
+            updateProgressBar('check-suspects', 'progress-suspects');
+            updateProgressBar('check-weapons', 'progress-weapons');
+            updateProgressBar('check-locations', 'progress-locations');
         });
     });
 
@@ -78,19 +113,23 @@ window.onload = function() {
             input.value = '';
             localStorage.removeItem(input.id);
         });
+
         updateCountDisplay('check-suspects', 'count-suspects');
         updateCountDisplay('check-weapons', 'count-weapons');
         updateCountDisplay('check-locations', 'count-locations');
+
+        updateProgressBar('check-suspects', 'progress-suspects');
+        updateProgressBar('check-weapons', 'progress-weapons');
+        updateProgressBar('check-locations', 'progress-locations');
     };
     document.body.appendChild(restoreButton);
 
-    // Create count displays
-    createCountDisplay('suspectsList', 'count-suspects');
-    createCountDisplay('weaponsList', 'count-weapons');
-    createCountDisplay('locationsList', 'count-locations');
-
-    // Initialize counts
+    // Initialize counts and progress bars
     updateCountDisplay('check-suspects', 'count-suspects');
     updateCountDisplay('check-weapons', 'count-weapons');
     updateCountDisplay('check-locations', 'count-locations');
+
+    updateProgressBar('check-suspects', 'progress-suspects');
+    updateProgressBar('check-weapons', 'progress-weapons');
+    updateProgressBar('check-locations', 'progress-locations');
 };
