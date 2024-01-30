@@ -86,6 +86,7 @@ body {
 }
 
 .progress-bar {
+    display: none;
     height: 20px;
     background-color: #4CAF50;
     text-align: center;

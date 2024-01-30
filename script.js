@@ -105,7 +105,7 @@ window.onload = function() {
     });
 
     const restoreButton = document.createElement('button');
-    restoreButton.textContent = 'CLEAR';
+    restoreButton.textContent = 'LIMPAR';
     restoreButton.className = 'restore-button';
     restoreButton.onclick = function() {
         checkboxes.forEach(function(checkbox) {
